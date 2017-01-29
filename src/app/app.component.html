@@ -1,0 +1,74 @@
+<md-toolbar class="my-toolbar" fxLayoutAlign="center center">
+  <img src="/assets/images/logo-is.png">
+</md-toolbar>
+
+<md-sidenav-container>
+  <md-sidenav #sidenav mode="side" opened="true" class="main-sidenav">
+    
+    <div class="flex-container" fxLayout="column">
+      <div class="facet-wrapper">
+        <p class="facet-title">Show results for</p>
+        <app-algolia-facets [attribute]="'category'">
+          <template let-item="item">
+            ❯ {{item.key}}
+          </template>
+        </app-algolia-facets>
+      </div>
+
+      <div class="facet-wrapper">
+        <p class="facet-title">Refine by</p>
+        <app-algolia-facets [attribute]="'materials'"[label]="'Material'" [limit]="'10'">
+          <template let-item="item">
+            <md-checkbox [(ngModel)]="item.checked">{{item.key}} ({{item.val}})</md-checkbox>
+          </template>
+        </app-algolia-facets>
+        <app-algolia-facets [attribute]="'colors'" [label]="'Colors'">
+          <template let-item="item">
+            <div class="facet-color" [attr.data-facet-value]="item.key">&nbsp;</div>
+          </template>
+        </app-algolia-facets>
+        <app-algolia-facets [attribute]="'rating'" [label]="'Rating'"></app-algolia-facets>
+        <app-algolia-facets [attribute]="'price'" [label]="'Prices'"></app-algolia-facets>
+      </div>
+    </div>
+    
+  </md-sidenav>
+  <!--<button md-mini-fab class="example-fab">
+    <md-icon>add</md-icon>
+  </button>-->
+  <!--<div fxLayout="column">-->
+    <div fxLayout="row">
+      <app-algolia-search [index]="'ikea'" [hitsPerPage]="16" fxFlex></app-algolia-search>
+      <!--<app-algolia-sort [indices]="sortIndices" [label]="'Sort by'"></app-algolia-sort>-->
+    </div>
+      
+    <app-algolia-stats></app-algolia-stats>
+    <div fxFlex>
+      <app-algolia-results class="flex-container" fxLayout="column">
+
+        <template let-item="item">
+          <div class="my-card">
+            <div style="background-color: #fff;">
+            <img class="my-card-image" [src]="item.image">
+            </div>
+            <div class="my-card-content" fxFlex>
+              <div fxFill fxLayout="row">
+                <div class="truncate product-name">{{item.name}}</div>
+                <div class="product-price">${{item.price}}</div>
+              </div>
+              <div class="truncate product-type">{{item.type}}</div>
+              <div class="product-rating">
+                <span *ngFor="let i of [0,1,2,3,4,5]; let index = index;">
+                  <span>{{ index < item.rating ? '★' : '☆' }}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </template>
+
+      </app-algolia-results>
+      <app-algolia-pagination class="flex-container" [padding]="3" fxLayout="row" fxLayoutAlign="center center"></app-algolia-pagination>
+    </div>
+
+  <!--</div>-->
+</md-sidenav-container>
