@@ -25,6 +25,15 @@ app-root {
   text-overflow: ellipsis;
 }
 
+.selected-filter {
+  color: #20cf7d;
+  font-weight: bold;
+}
+
+.rating-color {
+  color: #faa000;
+}
+
 .my-card {
   box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
   // width: 240px;
@@ -55,24 +64,60 @@ app-root {
   }
   .product-rating {
     padding-top: 11px;
-    color: #faa000;
   }
+}
+
+.my-stats {
+    box-sizing: border-box;
+    max-height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+    color: #777; 
+    font-size: .8em; 
+    padding: .5%;
+}
+
+input[type=text], textarea {
+  transition: all 0.20s ease-in-out;
+  border: 1px solid rgb(238, 238, 238);
+}
+ 
+input[type=text]:focus, textarea:focus {
+  outline: none !important;
+  border:1px solid #20cf7d;
+  box-shadow: 0 0 10px #20cf7d;
 }
 
 
 /* facet-colors */
 .facet-color {
-    width: 28px;
-    height: 28px;
-    border-radius: 3px;
-    margin: 0 6px 6px;
-    display: block;
-    overflow: hidden;
-    float: left;
+  width: 28px;
+  height: 28px;
+  border-radius: 3px;
+  margin: 0 6px 6px;
+  display: block;
+  overflow: hidden;
+  float: left;
+}
+
+.selected-color-filter {
+  position: relative;
+
+  .facet-color {
+    box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.5);
+  }
+}
+
+.facet-val {
+  color: #888;
 }
 
 .facet-color.checked {
-      box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.5); }
+  box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.5);
+}
 .facet-color[data-facet-value="White"] {
   background-color: #FFFFFF;
   box-shadow: inset 0 0 0 1px #CCC; }
