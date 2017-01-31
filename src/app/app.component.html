@@ -1,9 +1,12 @@
-<md-toolbar class="my-toolbar" fxLayoutAlign="center center">
-  <img src="/assets/images/logo-is.png">
+<md-toolbar class="my-toolbar">
+  <div fxLayoutAlign="center center" class="toolbar-logo">
+    <img class="logo" src="/assets/images/logo-is.png">
+  </div>
+  <div class="menu-icon" (click)="sidenav.toggle()">☰</div>
 </md-toolbar>
 
 <md-sidenav-container>
-  <md-sidenav #sidenav mode="side" opened="true" class="main-sidenav">
+  <md-sidenav #sidenav class="main-sidenav" [opened]="!isScreenSmall()" [mode]="isScreenSmall() ? 'over' : 'side'">
     
     <div class="flex-container" fxLayout="column">
       <div class="facet-wrapper">
@@ -17,6 +20,7 @@
 
       <div class="facet-wrapper">
         <p class="facet-title">Refine by</p>
+        <!--TODO : Component for sub, ...-->
         <app-algolia-facets [attribute]="'materials'"[label]="'Material'" [limit]="'10'" [selectedcssclass]="'selected-filter'">
           <template let-item="item">
             {{item.key}} <span class="facet-val">({{item.val}})</span>
@@ -35,7 +39,8 @@
             <span class="facet-val">({{item.val}})</span>
           </template>
         </app-algolia-facets>
-        <app-algolia-facets [attribute]="'price'" [label]="'Prices'"></app-algolia-facets>
+        <!--TODO : Component just for price ?-->
+        <!--<app-algolia-facets [attribute]="'price'" [label]="'Prices'"></app-algolia-facets>-->
       </div>
     </div>
     
@@ -46,28 +51,30 @@
   <!--<div fxLayout="column">-->
     <div fxLayout="row">
       <app-algolia-search [index]="'ikea'" [hitsPerPage]="16" fxFlex></app-algolia-search>
-      <app-algolia-sort [indices]="sortIndices" [label]="'Sort by'"></app-algolia-sort>
+      <!--<app-algolia-sort [indices]="sortIndices" [label]="'Sort by'"></app-algolia-sort>-->
     </div>
       
     <app-algolia-stats [cssclass]="'my-stats'"></app-algolia-stats>
     <div fxFlex>
-      <app-algolia-results class="flex-container" fxLayout="column">
+      <app-algolia-results class="flex-container" fxLayout="column" style="background-color: #e4e4e4;">
 
         <template let-item="item">
-          <div class="my-card">
-            <div style="background-color: #fff;">
-            <img class="my-card-image" [src]="item.image">
-            </div>
-            <div class="my-card-content" fxFlex>
-              <div fxFill fxLayout="row">
-                <div class="truncate product-name">{{item.name}}</div>
-                <div class="product-price">${{item.price}}</div>
+          <div class="my-item">
+            <div class="my-card">
+              <div style="background-color: #fff;">
+              <img class="my-card-image" [src]="item.image">
               </div>
-              <div class="truncate product-type">{{item.type}}</div>
-              <div class="product-rating rating-color">
-                <span *ngFor="let i of [1,2,3,4,5];">
-                  <span>{{ i <= item.rating ? '★' : '☆' }}</span>
-                </span>
+              <div class="my-card-content" fxFlex>
+                <div fxFill fxLayout="row">
+                  <div class="truncate product-name">{{item.name}}</div>
+                  <div class="product-price">${{item.price}}</div>
+                </div>
+                <div class="truncate product-type">{{item.type}}</div>
+                <div class="product-rating rating-color">
+                  <span *ngFor="let i of [1,2,3,4,5];">
+                    <span>{{ i <= item.rating ? '★' : '☆' }}</span>
+                  </span>
+                </div>
               </div>
             </div>
           </div>

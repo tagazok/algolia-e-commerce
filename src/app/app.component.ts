@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import {MdSidenav} from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app works!';
   sortIndices = [];
+
+  @ViewChild(MdSidenav) sidenav: MdSidenav;
+
   constructor() {
 
     this.sortIndices = [
@@ -15,5 +19,9 @@ export class AppComponent {
       {value: 'ikea_price_asc', label: 'Price asc.'},
       {value: 'ikea_price_desc', label: 'Price desc.'}
     ];
+  }
+
+  isScreenSmall(): boolean {
+    return window.matchMedia(`(max-width: 840px)`).matches;
   }
 }

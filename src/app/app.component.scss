@@ -3,9 +3,19 @@
   color: #fff;
   width: 100%;
 
-  img {
-    height: 70%;
-    border-radius: 50%;
+  .menu-icon {
+    position: absolute;
+    float: left;
+  }
+
+  .toolbar-logo {
+    width: 100%;
+    height: 100%;
+   
+    img.logo {
+      height: 70%;
+      border-radius: 50%;
+    }
   }
 }
 
@@ -16,16 +26,10 @@ md-sidenav-container {
   height: 100%;
 }
 
-// .my-md-sidenav-container {
-//   display: flex;
-//   flex: 1 1 auto;
-//   width: 100%;
-//   height: 100%;
-// }
-
 .main-sidenav {
   width: 250px;
   padding: 20px;
+  background-color: #fff;
 }
 
 app-algolia-search {
@@ -45,4 +49,10 @@ app-algolia-search {
   font-size: .90em;
 }
 
+.menu-icon {
+  display: none;
 
+  @media (max-width: 840px) {
+    display: block;
+  }
+}
