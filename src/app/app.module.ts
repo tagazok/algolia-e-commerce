@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 // import { AlgoliaService } from './my-algolia/algolia.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@angular/material';
-import { AlgoliaModule, AlgoliaService } from '@tagazok/algolia-components'
+import { AlgoliaModule, AlgoliaService } from '@tagazok/algolia-angular-components'
 
 @NgModule({
   declarations: [
